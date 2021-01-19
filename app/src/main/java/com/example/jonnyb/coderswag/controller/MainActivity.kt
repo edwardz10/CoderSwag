@@ -3,6 +3,7 @@ package com.example.coderswag.controller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.jonnyb.coderswag.R
 import com.example.jonnyb.coderswag.adapters.CategoryAdapter
 import com.example.jonnyb.coderswag.model.Category
@@ -19,5 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         adapter = CategoryAdapter (this, DataService.categories)
         categoryListView.adapter = adapter
+
+        categoryListView.setOnItemClickListener { adapterView, view, position, id ->
+            val category = DataService.categories[position]
+            Toast.makeText(this, "You clicked on the ${category.title} cell",
+                    Toast.LENGTH_SHORT).show()
+        }
     }
 }
